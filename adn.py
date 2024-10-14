@@ -354,10 +354,8 @@ def read_fasta_file(archivo_fasta):
 
 
 # Iniciar la replicación
-#secuencia_adn = read_fasta_file("web/scripts/sequenceS.fasta")
-#print(secuencia_adn)
-#print(len(secuencia_adn))
-#ADN_1 = ADN(secuencia_adn)
-#ADN_1.create()
-#ADN_1.start_replication()
+secuencia_adn = choose_input_method()
+ADN_1 = ADN(secuencia_adn)
+ADN_1.create()
+ADN_1.start_replication()
 #ADN_1.validate_replication()
