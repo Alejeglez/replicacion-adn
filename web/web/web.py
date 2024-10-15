@@ -51,7 +51,7 @@ def box_generate_random_adn() -> rx.Component:
                 rx.heading("Generar cadena de ADN aleatoria", size="5"),
                 rx.input(
                     name="input",
-                    default_value="10",
+                    default_value="12",
                     placeholder="Tamaño cadena de ADN aleatoria",
                 ),
                 rx.button("Generar", type="submit"),

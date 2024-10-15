@@ -101,6 +101,8 @@ class ADN:
   
         self.replace_primers_with_dna()
         replicated_leader, replicated_lagger = self.ligase_action()
+        print("Hebra líder replicada: " + replicated_leader)
+        print("Hebra rezagada replicada: " + replicated_lagger)
 
     def get_complementary_base(self, pairs, base):
         return pairs[base]
@@ -134,7 +136,7 @@ class ADN:
             self.text["helicasa_action_1"] = text
         
         elif i == len(self.adn) - 1:
-            text = f"Helicasa en posición: {self.position_helicasa + 1}\n\nHebra 1: {chain_1_str}\n\nHebra 2: {chain_2_str}\n\n La helicasa ha terminado de actuar en la cadena de ADN."
+            text = f"Helicasa en posición: {self.position_helicasa + 1}\n\nHebra 1: {chain_1_str}\n\nHebra 2: {chain_2_str}\n\nLa helicasa ha terminado de actuar en la cadena de ADN."
             self.text["helicasa_action_2"] = text
 
         print(text)
@@ -144,6 +146,7 @@ class ADN:
         """Simula la topoisomerasa."""
         text = f"La topoisomerasa ha comenzado a actuar para aliviar la tensión generada por la helicasa.\n\n"
         self.text["topoisomerasa_action"] = text
+
         print(text)
 
     def bind_ssb(self, position):
@@ -151,11 +154,12 @@ class ADN:
         text = f"Proteínas SSB unidas a las posiciones {position - 2} a {position} en ambas hebras.\n\n"
         if self.position_helicasa == 2:
             self.text["ssb_action"] = text
+
         print(text)
 
 
     def replicate_lider(self):
-        if self.position_helicasa < 11:
+        if self.position_helicasa < 10:
             self.activate_cebador_lider()
         else:
             self.adn_polimerasa_lider_action()
@@ -183,7 +187,7 @@ class ADN:
             base_comp = self.get_complementary_base(self.pairs_adn_adn_comp, self.chain_1_processed[self.position_helicasa - 1])
             self.new_comp_chain_1.append(base_comp)
 
-            if self.position_helicasa == 11:
+            if self.position_helicasa == 10:
                 text = f"La ADN polimerasa III líder ha encontrado el cebador y ha comenzado a replicar la cadena de ADN.\n\n ADN polimerasa líder en posición {self.position_helicasa} ha añadido la base: {base_comp}\n\nRéplica complementaria líder: {''.join(self.new_comp_chain_1)}\n\n"
                 self.text["adn_polimerasa_III_leader_action"] = text
             else:
@@ -265,14 +269,17 @@ class ADN:
         text = f"La ADN polimerasa I está sustituyendo los cebadores por ADN en ambas cadenas.\n\nCadena líder replicada tras sustituir los cebadores: {''.join(self.new_comp_chain_1)}\n\nCadena rezagada replicada tras sustituir los cebadores: {''.join(self.new_comp_chain_2)}\n\n"
         self.text["adn_polimerasa_I_action"] = text
 
+        print(text)
+
     def ligase_action(self):
         """La ligasa une los fragmentos de Okazaki en la cadena rezagada."""
 
         # Implementación simulada: los fragmentos de Okazaki se unen
         # Los fragmentos ya fueron añadidos en la cadena rezagada (`new_comp_chain_2`), aquí solo indicamos la unión
-        final_replicated_chain = "".join(self.new_comp_chain_2)  # Hebra rezagada completa
-        text = f"La ADN ligasa está uniendo los fragmentos de Okazaki en la hebra rezaga.Los fragmentos de Okazaki han sido unidos por la ADN ligasa.\n\nHebra rezagada replicada final: {final_replicated_chain}\n\n"
+        text = f"La ADN ligasa está uniendo los fragmentos de Okazaki en la hebra rezagada.Los fragmentos de Okazaki han sido unidos por la ADN ligasa."
         self.text["ligase_action"] = text
+
+        print(text)
 
         return "".join(self.new_comp_chain_1), "".join(self.new_comp_chain_2)
 
@@ -320,11 +327,12 @@ def get_user_input_sequence():
     """Solicita al usuario que ingrese manualmente una secuencia de ADN."""
     input_sequence_size = input("Por favor, ingresa el tamaño de la secuencia de ADN: ")
     # Verifica que el usuario haya ingresado un número entero
-    if not input_sequence_size.isdigit():
-        print("Por favor, ingresa un número entero.")
-        return get_user_input_sequence()
-    else:
+    if input_sequence_size.isdigit() and int(input_sequence_size) >= 11:
         return chain_generator(int(input_sequence_size))
+    else:
+        print("Por favor, ingresa un número entero y mayor a 10.")
+        return get_user_input_sequence()
+
 
 
 def choose_input_method():
@@ -358,4 +366,4 @@ secuencia_adn = choose_input_method()
 ADN_1 = ADN(secuencia_adn)
 ADN_1.create()
 ADN_1.start_replication()
-#ADN_1.validate_replication()
+ADN_1.validate_replication()

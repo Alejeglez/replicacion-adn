@@ -69,7 +69,6 @@ code_adn_polimersa_rezagado = """def adn_polimerasa_rezagado_action(self):
         self.new_comp_chain_2.append(base_comp)
     
     elif len(self.new_comp_chain_2) == len(self.chain_2_processed):
-        text = f"La ADN polimerasa III rezagada ha terminado de replicar la cadena de ADN rezagada.\n\nSe han sintetizado {self.n_fragmentos_okazaki} fragmentos de Okazaki."
         self.replicated = True
 """
 
@@ -85,7 +84,7 @@ code_replace_primers_with_dna = """def replace_primers_with_dna(self):
 
 code_ligase_action = """def ligase_action(self):
 
-    return "".join(self.new_comp_chain_1), "".join(self.new_comp_chain_2)"""
+        return "".join(self.new_comp_chain_1), "".join(self.new_comp_chain_2)"""
 
 code_replication = """def start_replication(self):
     i = 0
