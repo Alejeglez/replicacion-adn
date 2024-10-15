@@ -46,11 +46,11 @@ class State(rx.State):
         self.file_uploaded = True
         self.form_data = form_data
         input = self.form_data["input"]
-        if input.isdigit() and int(input) >= 11:
+        if input.isdigit() and int(input) > 11:
             self.content = chain_generator(int(input))
             await self.handle_replication()
         else:    
-            self.content = "Por favor, ingrese un número entero mayor a 10."
+            self.content = "Por favor, ingrese un número entero mayor a 11."
 
     async def handle_replication(self):
         """Handle the replication of the DNA sequence."""

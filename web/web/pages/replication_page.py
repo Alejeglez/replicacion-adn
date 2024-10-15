@@ -213,6 +213,7 @@ def replication() -> rx.Component:
                                         rx.heading("Ejemplo cadena líder", size="3"),
                                         rx.box(
                                             rx.markdown(State.text["primasa_action_1"]),
+                                            rx.markdown(State.text["primasa_action_2"]),
                                             style=common_style  # Cambia el color de fondo aquí
                                         ),
                                         rx.heading("Código", size="3"),
@@ -225,7 +226,7 @@ def replication() -> rx.Component:
                                     rx.section(
                                         rx.heading("Ejemplo cadena rezagada", size="3"),
                                         rx.box(
-                                            rx.markdown(State.text["primasa_action_2"]),
+                                            rx.markdown(State.text["primasa_action"]),
                                             style=common_style  # Cambia el color de fondo aquí
                                         ),
                                         rx.heading("Código", size="3"),

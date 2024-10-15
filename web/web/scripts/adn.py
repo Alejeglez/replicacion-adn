@@ -159,7 +159,7 @@ class ADN:
 
 
     def replicate_lider(self):
-        if self.position_helicasa < 10:
+        if self.position_helicasa < 11:
             self.activate_cebador_lider()
         else:
             self.adn_polimerasa_lider_action()
@@ -187,7 +187,7 @@ class ADN:
             base_comp = self.get_complementary_base(self.pairs_adn_adn_comp, self.chain_1_processed[self.position_helicasa - 1])
             self.new_comp_chain_1.append(base_comp)
 
-            if self.position_helicasa == 10:
+            if self.position_helicasa == 11:
                 text = f"La ADN polimerasa III líder ha encontrado el cebador y ha comenzado a replicar la cadena de ADN.\n\n ADN polimerasa líder en posición {self.position_helicasa} ha añadido la base: {base_comp}\n\nRéplica complementaria líder: {''.join(self.new_comp_chain_1)}\n\n"
                 self.text["adn_polimerasa_III_leader_action"] = text
             else:
@@ -328,10 +328,10 @@ def get_user_input_sequence():
     """Solicita al usuario que ingrese manualmente una secuencia de ADN."""
     input_sequence_size = input("Por favor, ingresa el tamaño de la secuencia de ADN: ")
     # Verifica que el usuario haya ingresado un número entero
-    if input_sequence_size.isdigit() and int(input_sequence_size) >= 11:
+    if input_sequence_size.isdigit() and int(input_sequence_size) > 11:
         return chain_generator(int(input_sequence_size))
     else:
-        print("Por favor, ingresa un número entero y mayor a 10.")
+        print("Por favor, ingresa un número entero y mayor a 11.")
         return get_user_input_sequence()
 
 
