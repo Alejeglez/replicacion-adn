@@ -97,6 +97,8 @@ class ADN:
             if self.position_helicasa > 0:
                 self.replicate_lider()
                 self.replicate_rezagada()
+
+            input("Presiona Enter para continuar con la replicación.")
             i += 1
   
         self.replace_primers_with_dna()
@@ -320,8 +322,10 @@ class ADN:
             print("Hebra rezagada original: " + "".join(self.chain_2))
             print("Hebra que debería ser la rezagada: " + "".join(self.new_comp_chain_1))
 
+
 def chain_generator(n):
     return "".join([random.choice("ATCG") for i in range(n)])
+
 
 def get_user_input_sequence():
     """Solicita al usuario que ingrese manualmente una secuencia de ADN."""
@@ -332,8 +336,7 @@ def get_user_input_sequence():
     else:
         print("Por favor, ingresa un número entero y mayor a 10.")
         return get_user_input_sequence()
-
-
+    
 
 def choose_input_method():
     """Permite al usuario elegir entre ingresar una secuencia manualmente o cargar un archivo FASTA."""
